@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import socketIO from "socket.io-client";
 import Nav from "./components/Nav";
 
+//
 const socket = socketIO.connect("http://localhost:4000");
 function App() {
   return (
