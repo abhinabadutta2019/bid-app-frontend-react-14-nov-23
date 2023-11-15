@@ -1,52 +1,48 @@
-import React, {useEffect, useState} from 'react'
-import EditButton from "./EditButton"
-import { Link} from "react-router-dom"
+import React, { useEffect, useState } from "react";
+import EditButton from "./EditButton";
+import { Link } from "react-router-dom";
 
 const Products = () => {
-  const [products, setProducts] = useState(null)
-  const [loading, setLoading] = useState(true)
+  const [products, setProducts] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(()=> {
-      const fetchProducts = () => {
-        fetch("http://localhost:4000/api").then(res => res.json()).then(data => {
-          setProducts(data.products)   
-          setLoading(false)
-      })}
-      fetchProducts()
-  }, [])
-  
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("http://localhost:4000/api");
+        const data = await response.json();
+        setProducts(data.products);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   return (
     <div>
-      <div className='table__container'>
-        <Link to="/products/add" className='products__cta'>ADD PRODUCTS </Link>
+      <Link to="/products/add">ADD PRODUCTS</Link>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Price</th>
-            <th>Last Bidder</th>
-            <th>Creator</th>
-            <th>Edit</th>
-          </tr>
-        </thead>
-        <tbody>
-          {loading ? <tr><td>Loading</td></tr> : products.map(product => (
-            <tr key={`${product.name}${product.price}`}>
-              <td>{product.name}</td>
-              <td>{product.price}</td>
-              <td>{product.last_bidder || "None"}</td>
-              <td>{product.owner}</td>
-              <td><EditButton product={product}/></td>
-            </tr>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <ul>
+          {products.map((product) => (
+            <li key={`${product.name}${product.price}`}>
+              Title: {product.name} <br />
+              Price: {product.price} <br />
+              Last Bidder: {product.last_bidder || "None"} <br />
+              Creator: {product.owner} <br />
+              <EditButton product={product} />
+            </li>
           ))}
-            
-        </tbody>
-      </table>
-      </div>
-
+        </ul>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default Products
+export default Products;
