@@ -33,16 +33,20 @@ function App() {
   return (
     <div>
       <h2>All products</h2>
-      <ul>
-        {data.map((item, index) => (
-          <li key={index}>
-            <h4>{item.name}</h4>
-            <p>{item.price}</p>
-            <p>{item.owner}</p>
-            <p>{item.last_bidder}</p>
-          </li>
-        ))}
-      </ul>
+      {data.length > 0 ? (
+        <ul>
+          {data.map((item, index) => (
+            <li key={index}>
+              <h4>{item.name}</h4>
+              <p>{item.price}</p>
+              <p>{item.owner}</p>
+              <p>{item.last_bidder}</p>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No item</p>
+      )}
     </div>
   );
 }
