@@ -44,7 +44,8 @@ function ProductContextProvider({ children }) {
       // Parse the response as JSON
       const jsonData = await response.json();
 
-      setData(jsonData.products);
+      //  setData(jsonData.products);
+      setData(jsonData);
 
       console.log("fetchData called");
 
