@@ -37,10 +37,10 @@ function App() {
         <ul>
           {data.map((item, index) => (
             <li key={index}>
-              <h4>{item.name}</h4>
-              <p>{item.price}</p>
-              <p>{item.owner}</p>
-              <p>{item.last_bidder}</p>
+              <h4>item name: {item.name}</h4>
+              <p>$price: {item.price}</p>
+              <p>owner: {item.owner}</p>
+              <p>last_bidder: {item.last_bidder}</p>
             </li>
           ))}
         </ul>
