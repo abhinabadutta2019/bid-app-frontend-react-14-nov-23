@@ -28,7 +28,7 @@ function ProductContextProvider({ children }) {
       );
     });
     //
-    fetchData();
+    // fetchData();
     //
     // Cleanup the socket connection on component unmount
     return () => socket.disconnect();
@@ -45,6 +45,8 @@ function ProductContextProvider({ children }) {
       const jsonData = await response.json();
 
       setData(jsonData.products);
+
+      console.log("fetchData called");
 
       //
       // Log the updated state in a useEffect hook
