@@ -27,6 +27,11 @@ function ProductContextProvider({ children }) {
         prevUsers.filter((userId) => userId !== disconnectedUserId)
       );
     });
+    // realtime, show to other connected user that, updated product list (data)
+    socket.on("newProductAdded", (newProduct) => {
+      // Update the state with the new product
+      setData((prevData) => [...prevData, newProduct]);
+    });
     //
     // fetchData();
     //
