@@ -44,7 +44,7 @@ function ProductContextProvider({ children }) {
   const fetchData = async () => {
     try {
       // Make a GET request to your backend API
-      const response = await fetch(`${ENDPOINT}/api`);
+      const response = await fetch(`${ENDPOINT}/product`);
 
       // Parse the response as JSON
       const jsonData = await response.json();
